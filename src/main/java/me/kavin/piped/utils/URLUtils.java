@@ -87,10 +87,13 @@ public class URLUtils {
 
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
-                queryPairs.add(List.of(
-                        silentDecode(pair.substring(0, idx)),
-                        silentDecode(pair.substring(idx + 1))
-                ));
+                
+                String key = silentDecode(pair.substring(0, idx));
+                String value = silentDecode(pair.substring(idx + 1));
+                
+                if(key != "ip") {
+                    queryPairs.add(List.of(key, value));
+                }
             }
         }
 
